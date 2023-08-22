@@ -1,0 +1,19 @@
+.gameboard {
+  display: grid;
+  grid-template-rows: repeat(3, 300px);
+  grid-template-columns: repeat(3, 300px);
+  justify-content: center;
+  align-content: center;
+}
+
+.gameboard > * {
+  display: flex;
+  border: 1px solid black;
+  justify-content: center;
+  align-items: center;
+}
+
+.gameboard p {
+  margin: 0;
+  padding: 0;
+}
