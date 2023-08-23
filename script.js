@@ -1,6 +1,9 @@
 const board = document.querySelector("#gameboard");
 
 const winner = document.querySelector("#winner");
+winner.addEventListener("click", function () {
+  console.log(winner);
+});
 
 const play = function (field) {
   if (field.innerHTML === "") {
@@ -10,6 +13,7 @@ const play = function (field) {
 
 const gameboard = (() => {
   let sign = "x";
+  let gamestatus = true;
   const state = ["", "", "", "", "", "", "", "", ""];
   const checkWinner = () => {
     if (
@@ -39,6 +43,7 @@ const gameboard = (() => {
         (field7.innerHTML === "x")
     ) {
       winner.innerHTML = "x wins";
+      gamestatus = false;
     } else if (
       (field1.innerHTML === "o") &
         (field2.innerHTML === "o") &
@@ -66,8 +71,10 @@ const gameboard = (() => {
         (field7.innerHTML === "o")
     ) {
       winner.innerHTML = "o wins";
+      gamestatus = false;
     } else if (state.includes("") == false) {
       winner.innerHTML = "draw";
+      gamestatus = false;
     }
   };
 
@@ -80,7 +87,10 @@ const gameboard = (() => {
       counter++;
       div.innerHTML = element;
       board.appendChild(div);
-      div.addEventListener("click", function () {
+      div.addEventListener("click", function (event) {
+        if (gamestatus === false) {
+          return;
+        }
         let arrayNumber = div.id.charAt(div.id.length - 1) - 1;
         state[arrayNumber] = sign;
         if (div.innerHTML === "") {
@@ -94,10 +104,6 @@ const gameboard = (() => {
         console.log(state);
         checkWinner();
       });
-      //   div.addEventListener("click", play(div));
-      //   div.addEventListener("click", function () {
-      //     div.style.backgroundColor = "red";
-      //   });
     });
   };
   return {
@@ -114,9 +120,3 @@ const player1 = playerFactory("jeff", "x");
 const player2 = playerFactory("jeff", "o");
 
 gameboard.fill();
-
-const field1 = document.querySelector("#field1");
-
-const field2 = document.querySelector("#field2");
-
-const field3 = document.querySelector("#field3");
