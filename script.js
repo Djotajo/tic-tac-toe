@@ -1,27 +1,122 @@
 const board = document.querySelector("#gameboard");
 
+const winner = document.querySelector("#winner");
+
+const play = function (field) {
+  if (field.innerHTML === "") {
+    field.innerHTML = "x";
+  }
+};
+
 const gameboard = (() => {
-  const state = ["x", "o", "x", "o", "x", "o", "x", "o", "x"];
+  let sign = "x";
+  const state = ["", "", "", "", "", "", "", "", ""];
+  const checkWinner = () => {
+    if (
+      (field1.innerHTML === "x") &
+        (field2.innerHTML === "x") &
+        (field3.innerHTML === "x") ||
+      (field4.innerHTML === "x") &
+        (field5.innerHTML === "x") &
+        (field6.innerHTML === "x") ||
+      (field7.innerHTML === "x") &
+        (field8.innerHTML === "x") &
+        (field9.innerHTML === "x") ||
+      (field1.innerHTML === "x") &
+        (field4.innerHTML === "x") &
+        (field7.innerHTML === "x") ||
+      (field2.innerHTML === "x") &
+        (field5.innerHTML === "x") &
+        (field8.innerHTML === "x") ||
+      (field3.innerHTML === "x") &
+        (field6.innerHTML === "x") &
+        (field9.innerHTML === "x") ||
+      (field1.innerHTML === "x") &
+        (field5.innerHTML === "x") &
+        (field9.innerHTML === "x") ||
+      (field3.innerHTML === "x") &
+        (field5.innerHTML === "x") &
+        (field7.innerHTML === "x")
+    ) {
+      winner.innerHTML = "x wins";
+    } else if (
+      (field1.innerHTML === "o") &
+        (field2.innerHTML === "o") &
+        (field3.innerHTML === "o") ||
+      (field4.innerHTML === "o") &
+        (field5.innerHTML === "o") &
+        (field6.innerHTML === "o") ||
+      (field7.innerHTML === "o") &
+        (field8.innerHTML === "o") &
+        (field9.innerHTML === "o") ||
+      (field1.innerHTML === "o") &
+        (field4.innerHTML === "o") &
+        (field7.innerHTML === "o") ||
+      (field2.innerHTML === "o") &
+        (field5.innerHTML === "o") &
+        (field8.innerHTML === "o") ||
+      (field3.innerHTML === "o") &
+        (field6.innerHTML === "o") &
+        (field9.innerHTML === "o") ||
+      (field1.innerHTML === "o") &
+        (field5.innerHTML === "o") &
+        (field9.innerHTML === "o") ||
+      (field3.innerHTML === "o") &
+        (field5.innerHTML === "o") &
+        (field7.innerHTML === "o")
+    ) {
+      winner.innerHTML = "o wins";
+    } else if (state.includes("") == false) {
+      winner.innerHTML = "draw";
+    }
+  };
+
   const fill = () => {
+    let counter = 1;
     state.forEach((element) => {
       const div = document.createElement("div");
       div.classList.add("field");
+      div.setAttribute("id", `field${counter}`);
+      counter++;
       div.innerHTML = element;
       board.appendChild(div);
+      div.addEventListener("click", function () {
+        let arrayNumber = div.id.charAt(div.id.length - 1) - 1;
+        state[arrayNumber] = sign;
+        if (div.innerHTML === "") {
+          div.innerHTML = sign;
+          if (sign === "x") {
+            sign = "o";
+          } else if (sign === "o") {
+            sign = "x";
+          }
+        }
+        console.log(state);
+        checkWinner();
+      });
+      //   div.addEventListener("click", play(div));
+      //   div.addEventListener("click", function () {
+      //     div.style.backgroundColor = "red";
+      //   });
     });
   };
   return {
     fill,
+    checkWinner,
   };
 })();
 
+const playerFactory = (name, symbol) => {
+  return { name, symbol };
+};
+
+const player1 = playerFactory("jeff", "x");
+const player2 = playerFactory("jeff", "o");
+
 gameboard.fill();
 
-// bookInfo.splice(0, 3).forEach((info) => {
-//     const para = document.createElement("p");
-//     para.innerHTML = info;
-//     div.appendChild(para);
-//   });
-//   const readBook = readButton(book);
-//   div.appendChild(readBook);
-//       });
+const field1 = document.querySelector("#field1");
+
+const field2 = document.querySelector("#field2");
+
+const field3 = document.querySelector("#field3");
