@@ -14,73 +14,74 @@ winner.addEventListener("click", function () {
 
 const play = function (field) {
   if (field.innerHTML === "") {
-    field.innerHTML = "x";
+    field.innerHTML = "X";
   }
 };
 
 const gameboard = (() => {
-  let sign = "x";
+  let sign = "X";
+  winner.innerHTML = "X turn";
   let gamestatus = true;
   let state = ["", "", "", "", "", "", "", "", ""];
   const checkWinner = () => {
     if (
-      (field1.innerHTML === "x") &
-        (field2.innerHTML === "x") &
-        (field3.innerHTML === "x") ||
-      (field4.innerHTML === "x") &
-        (field5.innerHTML === "x") &
-        (field6.innerHTML === "x") ||
-      (field7.innerHTML === "x") &
-        (field8.innerHTML === "x") &
-        (field9.innerHTML === "x") ||
-      (field1.innerHTML === "x") &
-        (field4.innerHTML === "x") &
-        (field7.innerHTML === "x") ||
-      (field2.innerHTML === "x") &
-        (field5.innerHTML === "x") &
-        (field8.innerHTML === "x") ||
-      (field3.innerHTML === "x") &
-        (field6.innerHTML === "x") &
-        (field9.innerHTML === "x") ||
-      (field1.innerHTML === "x") &
-        (field5.innerHTML === "x") &
-        (field9.innerHTML === "x") ||
-      (field3.innerHTML === "x") &
-        (field5.innerHTML === "x") &
-        (field7.innerHTML === "x")
+      (field1.innerHTML === "X") &
+        (field2.innerHTML === "X") &
+        (field3.innerHTML === "X") ||
+      (field4.innerHTML === "X") &
+        (field5.innerHTML === "X") &
+        (field6.innerHTML === "X") ||
+      (field7.innerHTML === "X") &
+        (field8.innerHTML === "X") &
+        (field9.innerHTML === "X") ||
+      (field1.innerHTML === "X") &
+        (field4.innerHTML === "X") &
+        (field7.innerHTML === "X") ||
+      (field2.innerHTML === "X") &
+        (field5.innerHTML === "X") &
+        (field8.innerHTML === "X") ||
+      (field3.innerHTML === "X") &
+        (field6.innerHTML === "X") &
+        (field9.innerHTML === "X") ||
+      (field1.innerHTML === "X") &
+        (field5.innerHTML === "X") &
+        (field9.innerHTML === "X") ||
+      (field3.innerHTML === "X") &
+        (field5.innerHTML === "X") &
+        (field7.innerHTML === "X")
     ) {
-      winner.innerHTML = "x wins";
+      winner.innerHTML = "X wins";
       gamestatus = false;
     } else if (
-      (field1.innerHTML === "o") &
-        (field2.innerHTML === "o") &
-        (field3.innerHTML === "o") ||
-      (field4.innerHTML === "o") &
-        (field5.innerHTML === "o") &
-        (field6.innerHTML === "o") ||
-      (field7.innerHTML === "o") &
-        (field8.innerHTML === "o") &
-        (field9.innerHTML === "o") ||
-      (field1.innerHTML === "o") &
-        (field4.innerHTML === "o") &
-        (field7.innerHTML === "o") ||
-      (field2.innerHTML === "o") &
-        (field5.innerHTML === "o") &
-        (field8.innerHTML === "o") ||
-      (field3.innerHTML === "o") &
-        (field6.innerHTML === "o") &
-        (field9.innerHTML === "o") ||
-      (field1.innerHTML === "o") &
-        (field5.innerHTML === "o") &
-        (field9.innerHTML === "o") ||
-      (field3.innerHTML === "o") &
-        (field5.innerHTML === "o") &
-        (field7.innerHTML === "o")
+      (field1.innerHTML === "O") &
+        (field2.innerHTML === "O") &
+        (field3.innerHTML === "O") ||
+      (field4.innerHTML === "O") &
+        (field5.innerHTML === "O") &
+        (field6.innerHTML === "O") ||
+      (field7.innerHTML === "O") &
+        (field8.innerHTML === "O") &
+        (field9.innerHTML === "O") ||
+      (field1.innerHTML === "O") &
+        (field4.innerHTML === "O") &
+        (field7.innerHTML === "O") ||
+      (field2.innerHTML === "O") &
+        (field5.innerHTML === "O") &
+        (field8.innerHTML === "O") ||
+      (field3.innerHTML === "O") &
+        (field6.innerHTML === "O") &
+        (field9.innerHTML === "O") ||
+      (field1.innerHTML === "O") &
+        (field5.innerHTML === "O") &
+        (field9.innerHTML === "O") ||
+      (field3.innerHTML === "O") &
+        (field5.innerHTML === "O") &
+        (field7.innerHTML === "O")
     ) {
-      winner.innerHTML = "o wins";
+      winner.innerHTML = "O wins";
       gamestatus = false;
     } else if (state.includes("") == false) {
-      winner.innerHTML = "draw";
+      winner.innerHTML = "Draw";
       gamestatus = false;
     }
   };
@@ -90,9 +91,9 @@ const gameboard = (() => {
     while (board.firstChild) {
       board.firstChild.remove();
     }
-    sign = "x";
+    sign = "X";
     gamestatus = true;
-    winner.innerHTML = "";
+    winner.innerHTML = "X turn";
   };
 
   const fill = () => {
@@ -112,12 +113,15 @@ const gameboard = (() => {
         state[arrayNumber] = sign;
         if (div.innerHTML === "") {
           div.innerHTML = sign;
-          if (sign === "x") {
-            sign = "o";
-          } else if (sign === "o") {
-            sign = "x";
+          if (sign === "X") {
+            sign = "O";
+            winner.innerHTML = "O turn";
+          } else if (sign === "O") {
+            sign = "X";
+            winner.innerHTML = "X turn";
           }
         }
+        // winner.innerHTML = sign;
         console.log(state);
         checkWinner();
       });
@@ -134,7 +138,7 @@ const playerFactory = (name, symbol) => {
   return { name, symbol };
 };
 
-const player1 = playerFactory("jeff", "x");
+const player1 = playerFactory("jeff", "X");
 const player2 = playerFactory("jeff", "o");
 
 gameboard.fill();
