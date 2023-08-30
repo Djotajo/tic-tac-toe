@@ -1,5 +1,12 @@
 const board = document.querySelector("#gameboard");
 
+const newGame = document.querySelector("#newGame");
+
+newGame.addEventListener("click", function () {
+  gameboard.clear();
+  gameboard.fill();
+});
+
 const winner = document.querySelector("#winner");
 winner.addEventListener("click", function () {
   console.log(winner);
@@ -14,7 +21,7 @@ const play = function (field) {
 const gameboard = (() => {
   let sign = "x";
   let gamestatus = true;
-  const state = ["", "", "", "", "", "", "", "", ""];
+  let state = ["", "", "", "", "", "", "", "", ""];
   const checkWinner = () => {
     if (
       (field1.innerHTML === "x") &
@@ -78,6 +85,16 @@ const gameboard = (() => {
     }
   };
 
+  const clear = () => {
+    state = ["", "", "", "", "", "", "", "", ""];
+    while (board.firstChild) {
+      board.firstChild.remove();
+    }
+    sign = "x";
+    gamestatus = true;
+    winner.innerHTML = "";
+  };
+
   const fill = () => {
     let counter = 1;
     state.forEach((element) => {
@@ -109,6 +126,7 @@ const gameboard = (() => {
   return {
     fill,
     checkWinner,
+    clear,
   };
 })();
 
