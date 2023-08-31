@@ -52,6 +52,7 @@ const gameboard = (() => {
     ) {
       winner.innerHTML = "X wins";
       gamestatus = false;
+      winner.classList.add("end");
     } else if (
       (field1.innerHTML === "O") &
         (field2.innerHTML === "O") &
@@ -80,9 +81,11 @@ const gameboard = (() => {
     ) {
       winner.innerHTML = "O wins";
       gamestatus = false;
+      winner.classList.add("end");
     } else if (state.includes("") == false) {
       winner.innerHTML = "Draw";
       gamestatus = false;
+      winner.classList.add("end");
     }
   };
 
@@ -94,13 +97,14 @@ const gameboard = (() => {
     sign = "X";
     gamestatus = true;
     winner.innerHTML = "X turn";
+    winner.classList.remove("end");
   };
 
   const fill = () => {
     let counter = 1;
     state.forEach((element) => {
       const div = document.createElement("div");
-      div.classList.add("field");
+      // div.classList.add("field");
       div.setAttribute("id", `field${counter}`);
       counter++;
       div.innerHTML = element;
@@ -113,6 +117,7 @@ const gameboard = (() => {
         state[arrayNumber] = sign;
         if (div.innerHTML === "") {
           div.innerHTML = sign;
+          div.classList.add("field");
           if (sign === "X") {
             sign = "O";
             winner.innerHTML = "O turn";
@@ -121,7 +126,6 @@ const gameboard = (() => {
             winner.innerHTML = "X turn";
           }
         }
-        // winner.innerHTML = sign;
         console.log(state);
         checkWinner();
       });

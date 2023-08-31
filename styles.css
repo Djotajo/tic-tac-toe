@@ -1,10 +1,20 @@
-main {
+body {
+  background-color: #ecf1ef;
+}
+
+main,
+header {
   display: flex;
   flex-direction: column;
 }
 
+header > h1 {
+  align-self: center;
+  font-size: 5rem;
+  margin: 2vh 0 5vh 0;
+}
+
 #gameboard {
-  margin-top: 5vh;
   display: grid;
   grid-template-rows: repeat(3, 200px);
   grid-template-columns: repeat(3, 200px);
@@ -17,14 +27,21 @@ main {
   border: 1px solid black;
   justify-content: center;
   align-items: center;
-  font-size: 3rem;
+  font-size: 5rem;
+}
+
+.field {
+  background-color: #f1ecee;
+  font-size: 6rem;
+  transition: 1s;
 }
 
 #winner {
-  margin-top: 3vh;
+  margin: 3vh 0;
   align-self: center;
   font-weight: bold;
   font-size: 3rem;
+  padding: 1vh;
 }
 
 #newGame {
@@ -33,6 +50,13 @@ main {
   font-weight: bold;
   padding: 10px;
   align-self: center;
+}
+
+.end {
+  background-color: #f1ecee;
+  transition: 1s;
+  border-radius: 10px;
+  border: 1px solid #d1c0c7;
 }
 
 #gameboard > :nth-child(1),
