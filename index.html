@@ -10,6 +10,60 @@
   </head>
   <body>
     <header><h1>Tic-Tac-Toe</h1></header>
+    <div class="players">
+      <!--  -->
+      <dialog id="playerName1">
+        <form id="myForm1">
+          <p>
+            <label for="name1">Enter your name</label>
+            <input type="text" size="30" id="name1" name="name1" required />
+          </p>
+          <div>
+            <button
+              id="closeBtn1"
+              value="cancel"
+              formmethod="dialog"
+              type="button"
+            >
+              Cancel
+            </button>
+            <button id="confirmBtn1" value="default" formmethod="dialog">
+              Confirm
+            </button>
+          </div>
+        </form>
+      </dialog>
+      <label for="player1Dialog" id="player1DialogLabel">
+        <div id="player1Dialog">Player 1</div>
+      </label>
+      <div id="player1score">0</div>
+      <div id="player2score">0</div>
+      <!--  -->
+      <dialog id="playerName2">
+        <form id="myForm2">
+          <p>
+            <label for="name2">Enter your name</label>
+            <input type="text" size="30" id="name2" name="name2" required />
+          </p>
+          <div>
+            <button
+              id="closeBtn2"
+              value="cancel"
+              formmethod="dialog"
+              type="button"
+            >
+              Cancel
+            </button>
+            <button id="confirmBtn2" value="default" formmethod="dialog">
+              Confirm
+            </button>
+          </div>
+        </form>
+      </dialog>
+      <label for="player2Dialog" id="player2DialogLabel">
+        <div id="player2Dialog">Player 2</div>
+      </label>
+    </div>
     <main>
       <div id="gameboard"></div>
       <p id="winner"></p>

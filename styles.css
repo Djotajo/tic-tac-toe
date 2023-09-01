@@ -87,3 +87,32 @@ header > h1 {
   margin: 0;
   padding: 0;
 }
+
+.players {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 2fr;
+  justify-content: space-around;
+  justify-content: center;
+  gap: 5vw;
+  font-size: 3rem;
+}
+
+#player1score {
+  justify-self: center;
+}
+
+#player2score {
+  justify-self: center;
+}
+
+#player1Dialog {
+  display: grid;
+  justify-self: center;
+  justify-content: end;
+}
+
+#player2Dialog {
+  display: grid;
+  justify-self: center;
+  justify-content: start;
+}

@@ -23,6 +23,8 @@ const gameboard = (() => {
   winner.innerHTML = "X turn";
   let gamestatus = true;
   let state = ["", "", "", "", "", "", "", "", ""];
+  const player1score = document.querySelector("#player1score");
+  const player2score = document.querySelector("#player2score");
   const checkWinner = () => {
     if (
       (field1.innerHTML === "X") &
@@ -51,7 +53,9 @@ const gameboard = (() => {
         (field7.innerHTML === "X")
     ) {
       winner.innerHTML = "X wins";
+      player1.score++;
       gamestatus = false;
+      player1score.innerHTML = `${player1.score}`;
       winner.classList.add("end");
     } else if (
       (field1.innerHTML === "O") &
@@ -80,7 +84,9 @@ const gameboard = (() => {
         (field7.innerHTML === "O")
     ) {
       winner.innerHTML = "O wins";
+      player2.score++;
       gamestatus = false;
+      player2score.innerHTML = `${player2.score}`;
       winner.classList.add("end");
     } else if (state.includes("") == false) {
       winner.innerHTML = "Draw";
@@ -138,11 +144,78 @@ const gameboard = (() => {
   };
 })();
 
-const playerFactory = (name, symbol) => {
-  return { name, symbol };
+const playerFactory = (name, symbol, score) => {
+  return { name, symbol, score };
 };
 
-const player1 = playerFactory("jeff", "X");
-const player2 = playerFactory("jeff", "o");
+let player1 = playerFactory("Player 1", "X", 0);
+let player2 = playerFactory("Player 2", "O", 0);
 
 gameboard.fill();
+
+const showButton1 = document.getElementById("player1Dialog");
+const playerName1 = document.getElementById("playerName1");
+
+showButton1.addEventListener("click", () => {
+  playerName1.showModal();
+});
+
+const confirmBtn1 = playerName1.querySelector("#confirmBtn1");
+const closeBtn1 = playerName1.querySelector("#closeBtn1");
+const player1field = document.querySelector("#player1Dialog");
+
+closeBtn1.addEventListener("click", () => {
+  playerName1.close();
+  myForm1.reset();
+});
+
+confirmBtn1.addEventListener("click", (event) => {
+  console.log("wtf");
+  const formCheck = document.getElementById("myForm1").checkValidity();
+  if (!formCheck) {
+    document.getElementById("myForm1").reportValidity();
+  } else {
+    event.preventDefault();
+    player1 = playerFactory(name1.value, "X", 0);
+    playerName1.close();
+  }
+  showButton1.innerHTML = player1.name;
+  player1score.innerHTML = `${player1.score}`;
+  console.log(player1);
+  myForm1.reset();
+});
+
+document.getElementById("myForm1").checkValidity();
+
+const showButton2 = document.getElementById("player2Dialog");
+const playerName2 = document.getElementById("playerName2");
+
+showButton2.addEventListener("click", () => {
+  playerName2.showModal();
+});
+
+const confirmBtn2 = playerName2.querySelector("#confirmBtn2");
+const closeBtn2 = playerName2.querySelector("#closeBtn2");
+const player2field = document.querySelector("#player2Dialog");
+
+closeBtn2.addEventListener("click", () => {
+  playerName2.close();
+  myForm2.reset();
+});
+
+confirmBtn2.addEventListener("click", (event) => {
+  const formCheck = document.getElementById("myForm2").checkValidity();
+  if (!formCheck) {
+    document.getElementById("myForm2").reportValidity();
+  } else {
+    event.preventDefault();
+    player2 = playerFactory(name2.value, "O", 0);
+    playerName2.close();
+  }
+  showButton2.innerHTML = player2.name;
+  player2score.innerHTML = `${player2.score}`;
+  console.log(player2);
+  myForm2.reset();
+});
+
+document.getElementById("myForm2").checkValidity();
