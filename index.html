@@ -12,7 +12,7 @@
     <header>
       <h1>Tic-Tac-Toe</h1>
       <div>
-        <p>by Djotajo</p>
+        <p>hover over the raven - a tip by Djotajo</p>
         <a href="https://github.com/Djotajo">
           <img id="githubLogo" src="github-mark.png" />
         </a>
@@ -43,7 +43,9 @@
         </form>
       </dialog>
       <label for="player1Dialog" id="player1DialogLabel">
-        <div id="player1Dialog"><span>Player 1</span><span>X</span></div>
+        <div id="player1Dialog" title="click to change">
+          <span>Player 1</span><span>X</span>
+        </div>
       </label>
       <div id="player1score">0</div>
       <div id="player2score">0</div>
@@ -70,10 +72,17 @@
         </form>
       </dialog>
       <label for="player2Dialog" id="player2DialogLabel">
-        <div id="player2Dialog"><span>Player 2</span><span>O</span></div>
+        <div id="player2Dialog" title="click to change">
+          <span>Player 2</span><span>O</span>
+        </div>
       </label>
     </div>
     <main>
+      <img
+        src="titlelogo.png"
+        alt="raven tip"
+        title="click on your name to change it"
+      />
       <div id="gameboard"></div>
       <p id="winner"></p>
       <button type="button" id="newGame">New Game</button>

@@ -33,10 +33,10 @@ const gameboard = (() => {
   let sign = "X";
   if (playsFirst === 1) {
     sign = "X";
-    winner.innerHTML = `${player1.name} turn`;
+    winner.innerHTML = `${player1.name}'s turn`;
   } else if (playsFirst === 2) {
     sign = "O";
-    winner.innerHTML = `${player2.name} turn`;
+    winner.innerHTML = `${player2.name}'s turn`;
   }
   let gamestatus = true;
   let state = ["", "", "", "", "", "", "", "", ""];
@@ -131,10 +131,10 @@ const gameboard = (() => {
     winner.classList.remove("end");
     if (playsFirst === 1) {
       sign = "X";
-      winner.innerHTML = `${player1.name} turn`;
+      winner.innerHTML = `${player1.name}'s turn`;
     } else if (playsFirst === 2) {
       sign = "O";
-      winner.innerHTML = `${player2.name} turn`;
+      winner.innerHTML = `${player2.name}'s turn`;
     }
     console.log(playsFirst);
   };
@@ -158,10 +158,10 @@ const gameboard = (() => {
           div.classList.add("field");
           if (sign === "X") {
             sign = "O";
-            winner.innerHTML = `${player2.name} turn`;
+            winner.innerHTML = `${player2.name}'s turn`;
           } else if (sign === "O") {
             sign = "X";
-            winner.innerHTML = `${player1.name} turn`;
+            winner.innerHTML = `${player1.name}'s turn`;
           }
         }
         console.log(state);
@@ -210,8 +210,8 @@ confirmBtn1.addEventListener("click", (event) => {
   player1score.innerHTML = `${player1.score}`;
   console.log(player1);
   myForm1.reset();
-  if (winner.innerHTML === `${pastname} turn`) {
-    winner.innerHTML = `${player1.name} turn`;
+  if (winner.innerHTML === `${pastname}'s turn`) {
+    winner.innerHTML = `${player1.name}'s turn`;
   }
 });
 
@@ -248,8 +248,8 @@ confirmBtn2.addEventListener("click", (event) => {
   player2score.innerHTML = `${player2.score}`;
   console.log(player2);
   myForm2.reset();
-  if (winner.innerHTML === `${pastname} turn`) {
-    winner.innerHTML = `${player2.name} turn`;
+  if (winner.innerHTML === `${pastname}'s turn`) {
+    winner.innerHTML = `${player2.name}'s turn`;
   }
 });
 
