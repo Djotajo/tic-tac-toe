@@ -9,12 +9,12 @@ header {
   position: relative;
 }
 
-main > img {
+header > img {
   max-width: 5vw;
   max-height: 10vh;
-  position: fixed;
+  position: absolute;
   left: 10%;
-  top: 50%;
+  bottom: 1px;
 }
 
 header {
