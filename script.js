@@ -2,6 +2,8 @@ const board = document.querySelector("#gameboard");
 
 const newGame = document.querySelector("#newGame");
 
+let playsFirst = 1;
+
 newGame.addEventListener("click", function () {
   gameboard.clear();
   gameboard.fill();
@@ -13,18 +15,35 @@ winner.addEventListener("click", function () {
 });
 
 const play = function (field) {
-  if (field.innerHTML === "") {
+  if ((field.innerHTML === "") & (playsFirst === 1)) {
     field.innerHTML = "X";
+  } else if ((field.innerHTML === "") & (playsFirst === 2)) {
+    field.innerHTML = "O";
   }
 };
 
 const gameboard = (() => {
   let sign = "X";
-  winner.innerHTML = "X turn";
+  if (playsFirst === 1) {
+    sign = "X";
+    winner.innerHTML = "X turn";
+  } else if (playsFirst === 2) {
+    sign = "O";
+    winner.innerHTML = "O turn";
+  }
   let gamestatus = true;
   let state = ["", "", "", "", "", "", "", "", ""];
   const player1score = document.querySelector("#player1score");
   const player2score = document.querySelector("#player2score");
+
+  const turn = () => {
+    if (playsFirst === 1) {
+      playsFirst = 2;
+    } else if (playsFirst === 2) {
+      playsFirst = 1;
+    }
+  };
+
   const checkWinner = () => {
     if (
       (field1.innerHTML === "X") &
@@ -100,10 +119,19 @@ const gameboard = (() => {
     while (board.firstChild) {
       board.firstChild.remove();
     }
-    sign = "X";
+    // sign = "X";
     gamestatus = true;
-    winner.innerHTML = "X turn";
+    turn();
+    // winner.innerHTML = "X turn";
     winner.classList.remove("end");
+    if (playsFirst === 1) {
+      sign = "X";
+      winner.innerHTML = "X turn";
+    } else if (playsFirst === 2) {
+      sign = "O";
+      winner.innerHTML = "O turn";
+    }
+    console.log(playsFirst);
   };
 
   const fill = () => {
