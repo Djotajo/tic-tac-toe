@@ -8,10 +8,33 @@ header {
   flex-direction: column;
 }
 
+header {
+  background-color: #bcc0bf;
+}
+
 header > h1 {
   align-self: center;
-  font-size: 5rem;
-  margin: 2vh 0 5vh 0;
+  font-size: 4rem;
+  margin: 2vh 0 3vh 0;
+}
+
+header > div {
+  display: flex;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;
+  gap: 1vw;
+}
+
+header p {
+  margin: 0;
+  padding: 0;
+}
+
+#githubLogo {
+  width: 1.5em;
+  height: auto;
 }
 
 #gameboard {
@@ -37,10 +60,10 @@ header > h1 {
 }
 
 #winner {
-  margin: 3vh 0;
+  margin: 2vh 0;
   align-self: center;
   font-weight: bold;
-  font-size: 3rem;
+  font-size: 2rem;
   padding: 1vh;
 }
 
@@ -93,8 +116,12 @@ header > h1 {
   grid-template-columns: 2fr 1fr 1fr 2fr;
   justify-content: space-around;
   justify-content: center;
-  gap: 5vw;
-  font-size: 3rem;
+  gap: 2vw;
+  font-size: 2rem;
+  font-weight: bold;
+  background-color: #d4d8d7;
+  margin-bottom: 2vh;
+  align-items: center;
 }
 
 #player1score {
@@ -109,6 +136,12 @@ header > h1 {
   display: grid;
   justify-self: center;
   justify-content: end;
+}
+
+#player1Dialog > :nth-child(2),
+#player2Dialog > :nth-child(2) {
+  display: grid;
+  justify-self: center;
 }
 
 #player2Dialog {

@@ -22,14 +22,21 @@ const play = function (field) {
   }
 };
 
+const playerFactory = (name, symbol, score) => {
+  return { name, symbol, score };
+};
+
+let player1 = playerFactory("Player 1", "X", 0);
+let player2 = playerFactory("Player 2", "O", 0);
+
 const gameboard = (() => {
   let sign = "X";
   if (playsFirst === 1) {
     sign = "X";
-    winner.innerHTML = "X turn";
+    winner.innerHTML = `${player1.name} turn`;
   } else if (playsFirst === 2) {
     sign = "O";
-    winner.innerHTML = "O turn";
+    winner.innerHTML = `${player2.name} turn`;
   }
   let gamestatus = true;
   let state = ["", "", "", "", "", "", "", "", ""];
@@ -71,7 +78,7 @@ const gameboard = (() => {
         (field5.innerHTML === "X") &
         (field7.innerHTML === "X")
     ) {
-      winner.innerHTML = "X wins";
+      winner.innerHTML = `${player1.name} wins!`;
       player1.score++;
       gamestatus = false;
       player1score.innerHTML = `${player1.score}`;
@@ -102,13 +109,13 @@ const gameboard = (() => {
         (field5.innerHTML === "O") &
         (field7.innerHTML === "O")
     ) {
-      winner.innerHTML = "O wins";
+      winner.innerHTML = `${player2.name} wins!`;
       player2.score++;
       gamestatus = false;
       player2score.innerHTML = `${player2.score}`;
       winner.classList.add("end");
     } else if (state.includes("") == false) {
-      winner.innerHTML = "Draw";
+      winner.innerHTML = "Draw!";
       gamestatus = false;
       winner.classList.add("end");
     }
@@ -119,17 +126,15 @@ const gameboard = (() => {
     while (board.firstChild) {
       board.firstChild.remove();
     }
-    // sign = "X";
     gamestatus = true;
     turn();
-    // winner.innerHTML = "X turn";
     winner.classList.remove("end");
     if (playsFirst === 1) {
       sign = "X";
-      winner.innerHTML = "X turn";
+      winner.innerHTML = `${player1.name} turn`;
     } else if (playsFirst === 2) {
       sign = "O";
-      winner.innerHTML = "O turn";
+      winner.innerHTML = `${player2.name} turn`;
     }
     console.log(playsFirst);
   };
@@ -138,7 +143,6 @@ const gameboard = (() => {
     let counter = 1;
     state.forEach((element) => {
       const div = document.createElement("div");
-      // div.classList.add("field");
       div.setAttribute("id", `field${counter}`);
       counter++;
       div.innerHTML = element;
@@ -154,10 +158,10 @@ const gameboard = (() => {
           div.classList.add("field");
           if (sign === "X") {
             sign = "O";
-            winner.innerHTML = "O turn";
+            winner.innerHTML = `${player2.name} turn`;
           } else if (sign === "O") {
             sign = "X";
-            winner.innerHTML = "X turn";
+            winner.innerHTML = `${player1.name} turn`;
           }
         }
         console.log(state);
@@ -171,13 +175,6 @@ const gameboard = (() => {
     clear,
   };
 })();
-
-const playerFactory = (name, symbol, score) => {
-  return { name, symbol, score };
-};
-
-let player1 = playerFactory("Player 1", "X", 0);
-let player2 = playerFactory("Player 2", "O", 0);
 
 gameboard.fill();
 
@@ -200,6 +197,7 @@ closeBtn1.addEventListener("click", () => {
 confirmBtn1.addEventListener("click", (event) => {
   console.log("wtf");
   const formCheck = document.getElementById("myForm1").checkValidity();
+  let pastname = player1.name;
   if (!formCheck) {
     document.getElementById("myForm1").reportValidity();
   } else {
@@ -207,10 +205,14 @@ confirmBtn1.addEventListener("click", (event) => {
     player1 = playerFactory(name1.value, "X", 0);
     playerName1.close();
   }
-  showButton1.innerHTML = player1.name;
+  const playerOne = document.querySelector("#player1Dialog :nth-child(1)");
+  playerOne.innerHTML = player1.name;
   player1score.innerHTML = `${player1.score}`;
   console.log(player1);
   myForm1.reset();
+  if (winner.innerHTML === `${pastname} turn`) {
+    winner.innerHTML = `${player1.name} turn`;
+  }
 });
 
 document.getElementById("myForm1").checkValidity();
@@ -233,6 +235,7 @@ closeBtn2.addEventListener("click", () => {
 
 confirmBtn2.addEventListener("click", (event) => {
   const formCheck = document.getElementById("myForm2").checkValidity();
+  let pastname = player2.name;
   if (!formCheck) {
     document.getElementById("myForm2").reportValidity();
   } else {
@@ -240,10 +243,14 @@ confirmBtn2.addEventListener("click", (event) => {
     player2 = playerFactory(name2.value, "O", 0);
     playerName2.close();
   }
-  showButton2.innerHTML = player2.name;
+  const playerTwo = document.querySelector("#player2Dialog :nth-child(1)");
+  playerTwo.innerHTML = player2.name;
   player2score.innerHTML = `${player2.score}`;
   console.log(player2);
   myForm2.reset();
+  if (winner.innerHTML === `${pastname} turn`) {
+    winner.innerHTML = `${player2.name} turn`;
+  }
 });
 
 document.getElementById("myForm2").checkValidity();
